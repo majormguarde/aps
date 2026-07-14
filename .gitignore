@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs and temp
+*.log
+*.tmp
+*.temp
+.cache/
+
+# Secrets and local config
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+secrets/
+
+# Build artifacts
+dist/
+build/
+out/
+*.pyc
+__pycache__/
+node_modules/
