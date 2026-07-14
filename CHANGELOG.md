@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Repository restructured as APS SDK (Avangard Prompt Specification SDK)
 - Root documentation: README, ARCHITECTURE, ROADMAP, CONTRIBUTING, CHANGELOG
-- Directory structure: ADR, RFC, TASK, builder, docs, knowledge, specification, templates, tests
+- Directory structure: ADR, RFC, TASK, builder, docs, examples, knowledge, specification, templates, tests
 - Governance workflow documentation for ADR, RFC, and TASK directories
 
 ### Removed

@@ -25,6 +25,7 @@ flowchart TB
         Builder[builder/]
         Templates[templates/]
         Knowledge[knowledge/]
+        Examples[examples/]
         Tests[tests/]
     end
 
@@ -38,6 +39,7 @@ flowchart TB
     Spec --> Tests
     Templates --> Builder
     Knowledge --> Spec
+    Examples --> Spec
     RFC --> Spec
     ADR --> sdk
     Task --> sdk
@@ -78,6 +80,10 @@ Canonical scaffolds for authoring specification-compliant documents. Templates a
 ### `knowledge/`
 
 Non-normative reference material: glossaries, integration guides, domain mappings. Content here does not override the specification.
+
+### `examples/`
+
+Illustrative, non-normative examples of specification artifacts and SDK usage patterns. Examples support adoption but do not define requirements.
 
 ### `tests/`
 
