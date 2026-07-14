@@ -21,7 +21,7 @@ Provide the build pipeline, validation engine, CLI, and programmatic API for con
 
 | Directory | Relationship |
 |-----------|--------------|
-| [`specification/`](../specification/) | Primary input — builder consumes normative specification artifacts |
+| [`aps/`](../aps/) | Primary input — builder consumes APS DSL source artifacts |
 | [`templates/`](../templates/) | Authoring scaffolds that feed into the build pipeline |
 | [`tests/`](../tests/) | Conformance tests verify builder output against the specification |
 | [`examples/`](../examples/) | Illustrative inputs for builder validation during development |

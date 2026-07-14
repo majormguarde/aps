@@ -12,11 +12,12 @@ Establish repository structure, governance processes, and architectural baseline
 
 | Deliverable | Status |
 |-------------|--------|
-| Top-level directory structure (ADR, RFC, TASK, builder, docs, examples, knowledge, specification, templates, tests) | Completed |
+| Top-level directory structure (ADR, RFC, TASK, aps, builder, docs, examples, knowledge, make, templates, tests) | Completed |
+| APS DSL source tree skeleton (`aps/` with schema, rules, checks, validators, actions, tests) | Completed |
 | Directory README files with purpose, responsibility, contents, and relationships | Completed |
 | Root documentation (README, ARCHITECTURE, ROADMAP, CONTRIBUTING, CHANGELOG) | Completed |
 | Governance workflow documentation (ADR, RFC, TASK) | Completed |
-| Foundation constraints enforced (no specification files, no implementation) | Completed |
+| Foundation constraints enforced (empty `aps-v5.yaml` placeholder only, no implementation) | Completed |
 
 Tracked in [TASK-0002](TASK/0002-complete-aps-sdk-foundation.md).
 
@@ -24,20 +25,20 @@ Tracked in [TASK-0002](TASK/0002-complete-aps-sdk-foundation.md).
 
 **Status:** Planned
 
-Define the normative APS specification: grammar, schema, semantics, and versioning.
+Define the normative APS specification in `aps/`: grammar, schema, semantics, and versioning.
 
 | Deliverable | Status |
 |-------------|--------|
-| Specification document structure | Planned |
-| Schema definition format | Planned |
-| Semantic rules catalog | Planned |
+| `aps-v5.yaml` specification structure | Planned |
+| Schema definitions in `aps/schema/` | Planned |
+| Rules and checks in `aps/rules/`, `aps/checks/` | Planned |
 | Version compatibility policy | Planned |
 
 ## Phase 2 — Builder Tooling
 
 **Status:** Planned
 
-Implement the builder pipeline that validates and generates artifacts from specification inputs.
+Implement the builder pipeline that validates and generates artifacts from `aps/` inputs.
 
 | Deliverable | Status |
 |-------------|--------|
@@ -71,6 +72,7 @@ Provide authoring scaffolds and reference material for adopters.
 | Glossary and terminology | Planned |
 | Integration guides | Planned |
 | Reference examples | Planned |
+| Make scenarios and prompts | Planned |
 
 ## Phase 5 — First Public Release
 

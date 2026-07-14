@@ -4,7 +4,7 @@ This document describes the architectural model of **APS SDK** (Avangard Prompt 
 
 ## Design Principles
 
-1. **Specification-first** — The normative specification in `specification/` is the single source of truth. All tooling derives from it.
+1. **Specification-first** — The APS DSL source tree in `aps/` is the single source of truth. All tooling derives from it.
 2. **Separation of concerns** — Specification, tooling, knowledge, and templates are independent layers with explicit contracts.
 3. **Governed evolution** — Changes to the specification require RFC review; architectural decisions require ADRs.
 4. **Testable conformance** — Every normative requirement must be verifiable through automated tests in `tests/`.
@@ -17,13 +17,14 @@ This document describes the architectural model of **APS SDK** (Avangard Prompt 
 ├── ADR/              Architecture Decision Records
 ├── RFC/              Specification change proposals
 ├── TASK/             Tracked work items
+├── aps/              APS DSL source tree
 ├── builder/          SDK build and code generation tooling
 ├── docs/             Supplementary documentation
 ├── examples/         Reference usage examples
 ├── knowledge/        Domain knowledge and reference material
-├── specification/    Normative APS specification artifacts
+├── make/             Build scenarios and automation prompts
 ├── templates/        Authoring scaffolds
-└── tests/            Conformance and regression tests
+└── tests/            SDK conformance and regression tests
 ```
 
 Root-level documents (`README.md`, `ARCHITECTURE.md`, `ROADMAP.md`, `CONTRIBUTING.md`, `CHANGELOG.md`) provide project-wide context. Each directory contains a `README.md` describing its purpose, responsibility, expected contents, and relationships.
@@ -39,7 +40,7 @@ flowchart TB
     end
 
     subgraph core [Core]
-        Spec[specification/]
+        APS[aps/]
         Builder[builder/]
         Tests[tests/]
     end
@@ -49,6 +50,7 @@ flowchart TB
         Knowledge[knowledge/]
         Examples[examples/]
         Docs[docs/]
+        Make[make/]
     end
 
     subgraph consumers [Consumers]
@@ -57,16 +59,32 @@ flowchart TB
         Apps[Application Runtimes]
     end
 
-    RFC --> Spec
+    RFC --> APS
     ADR --> core
     TASK --> core
-    Spec --> Builder
-    Spec --> Tests
-    Templates --> Builder
-    Knowledge --> Spec
-    Examples --> Spec
+    APS --> Builder
+    APS --> Tests
+    Templates --> APS
+    Make --> APS
+    Knowledge --> APS
+    Examples --> APS
     Builder --> consumers
     Tests --> CI
+```
+
+## APS DSL Source Tree
+
+The `aps/` directory is the sole location for the APS language:
+
+```
+aps/
+├── aps-v5.yaml       Root specification entry point
+├── schema/           Structural data model
+├── rules/            Decision and constraint definitions
+├── checks/           Compliance check definitions
+├── validators/       Field and format validators
+├── actions/          Action definitions
+└── tests/            Specification-level test fixtures
 ```
 
 ## Component Boundaries
@@ -83,9 +101,9 @@ flowchart TB
 
 | Directory | Responsibility | Expected Contents |
 |-----------|---------------|-------------------|
-| `specification/` | Define normative APS language, schema, semantics, versioning | Specification artifacts (Phase 1) |
+| `aps/` | Define normative APS language: schema, rules, checks, validators, actions | DSL source artifacts (Phase 1) |
 | `builder/` | Validate inputs and generate distributable SDK artifacts | Build pipeline, CLI, API (Phase 2) |
-| `tests/` | Verify conformance against the normative specification | Schema, semantic, builder, regression tests (Phase 3) |
+| `tests/` | Verify SDK conformance against the APS language | Schema, semantic, builder, regression tests (Phase 3) |
 
 ### Support
 
@@ -95,17 +113,19 @@ flowchart TB
 | `knowledge/` | Host non-normative reference material | Glossaries, domain mappings, guides (Phase 4) |
 | `examples/` | Illustrate correct usage without defining requirements | Sample artifacts and patterns (Phase 4) |
 | `docs/` | Supplement root documentation with detailed guides | Authoring, builder, testing, migration guides |
+| `make/` | Host build scenarios and automation prompts | Scenarios, prompts |
 
 ## Dependency Flow
 
 ```
-RFC/ ──proposes──▶ specification/ ──consumed by──▶ builder/
-                         │                              │
-                         ├──validated by──▶ tests/       ├──output──▶ consumers
-                         │
-templates/ ──scaffolds──▶ specification/
-knowledge/ ──informs──▶  specification/
-examples/ ──illustrates ▶ specification/
+RFC/ ──proposes──▶ aps/ ──consumed by──▶ builder/
+                    │                        │
+                    ├──validated by──▶ tests/ ├──output──▶ consumers
+                    │
+templates/ ──scaffolds──▶ aps/
+make/ ──automates──▶     aps/
+knowledge/ ──informs──▶   aps/
+examples/ ──illustrates ▶ aps/
 
 ADR/ ──governs──▶ all layers
 TASK/ ──tracks──▶ all layers
@@ -117,7 +137,7 @@ At the current foundation stage, the repository contains **infrastructure only**
 
 | Excluded | Reason |
 |----------|--------|
-| APS YAML specification files | Specification content begins in Phase 1 |
+| APS YAML specification content | Only empty `aps/aps-v5.yaml` placeholder is permitted |
 | Builder implementation | Tooling begins in Phase 2 |
 | Conformance tests | Test suite begins in Phase 3 |
 | DSL runtime | Out of SDK scope |
@@ -136,4 +156,4 @@ Specification versions and SDK package versions are aligned but tracked independ
 
 ## Extension Points
 
-Future integrations (IDE plugins, language server, package registries) consume the builder output API. Extension contracts will be defined in `specification/` as the SDK matures.
+Future integrations (IDE plugins, language server, package registries) consume the builder output API. Extension contracts will be defined in `aps/` as the SDK matures.

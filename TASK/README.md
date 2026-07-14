@@ -21,7 +21,7 @@ Decompose roadmap phases into trackable deliverables before significant developm
 | [`ROADMAP.md`](../ROADMAP.md) | Tasks implement roadmap phase deliverables |
 | [`RFC/`](../RFC/) | Tasks may depend on accepted RFCs for specification changes |
 | [`ADR/`](../ADR/) | Tasks may reference ADRs that govern implementation approach |
-| All component directories | Tasks scope work within `specification/`, `builder/`, `tests/`, and other layers |
+| All component directories | Tasks scope work within `aps/`, `builder/`, `tests/`, and other layers |
 
 Current phases: [ROADMAP.md](../ROADMAP.md).
 

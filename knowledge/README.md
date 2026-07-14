@@ -20,7 +20,7 @@ Provide contextual information — glossaries, domain mappings, integration patt
 
 | Directory | Relationship |
 |-----------|--------------|
-| [`specification/`](../specification/) | Normative authority — knowledge content does not override specification rules |
+| [`aps/`](../aps/) | Normative authority — knowledge content does not override APS language rules |
 | [`examples/`](../examples/) | Concrete illustrations complement conceptual knowledge |
 | [`templates/`](../templates/) | Scaffolds for authoring knowledge base entries |
 | [`docs/`](../docs/) | SDK process guides; knowledge/ covers domain reference material |

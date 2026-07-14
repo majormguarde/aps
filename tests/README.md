@@ -21,7 +21,7 @@ Provide automated, deterministic validation of specification artifacts, builder 
 
 | Directory | Relationship |
 |-----------|--------------|
-| [`specification/`](../specification/) | Tests validate against normative rules defined here |
+| [`aps/`](../aps/) | Tests validate against normative rules defined in the DSL source tree |
 | [`builder/`](../builder/) | Builder integration tests verify pipeline output |
 | [`examples/`](../examples/) | Examples may inform test fixtures |
 | [`RFC/`](../RFC/) | Accepted RFCs require corresponding test coverage |

@@ -20,7 +20,7 @@ Support adoption by demonstrating correct usage without defining requirements or
 
 | Directory | Relationship |
 |-----------|--------------|
-| [`specification/`](../specification/) | Authoritative source — examples must not override normative rules |
+| [`aps/`](../aps/) | Authoritative source — examples must not override normative rules |
 | [`templates/`](../templates/) | Scaffolds for creating new examples |
 | [`builder/`](../builder/) | Examples serve as builder input during development and testing |
 | [`tests/`](../tests/) | Examples may inform test fixtures but do not replace conformance tests |

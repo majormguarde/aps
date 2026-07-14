@@ -20,7 +20,7 @@ Ensure structural consistency across specification documents, RFCs, ADRs, and kn
 
 | Directory | Relationship |
 |-----------|--------------|
-| [`specification/`](../specification/) | Templates produce content that lands in the normative layer |
+| [`aps/`](../aps/) | Templates produce content that lands in the APS DSL source tree |
 | [`builder/`](../builder/) | Builder may consume template-generated artifacts |
 | [`RFC/`](../RFC/), [`ADR/`](../ADR/), [`TASK/`](../TASK/) | Governance templates standardize proposal and decision documents |
 | [`examples/`](../examples/) | Examples demonstrate template usage |

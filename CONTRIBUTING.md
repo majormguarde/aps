@@ -62,7 +62,7 @@ Changes to normative specification content **must** go through the RFC process:
 1. Create a branch prefixed with `rfc/`.
 2. Add an RFC document to `RFC/` following the template in [RFC/README.md](RFC/README.md).
 3. Open a pull request for review.
-4. After approval, implement the change in `specification/` in a separate PR.
+4. After approval, implement the change in `aps/` in a separate PR.
 
 ## Architectural Decisions
 

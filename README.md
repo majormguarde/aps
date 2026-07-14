@@ -24,7 +24,7 @@ flowchart TB
     end
 
     subgraph core [Core]
-        Spec[specification/]
+        APS[aps/]
         Builder[builder/]
         Tests[tests/]
     end
@@ -34,6 +34,7 @@ flowchart TB
         Knowledge[knowledge/]
         Examples[examples/]
         Docs[docs/]
+        Make[make/]
     end
 
     subgraph consumers [Consumers]
@@ -42,14 +43,15 @@ flowchart TB
         Apps[Application Runtimes]
     end
 
-    RFC --> Spec
+    RFC --> APS
     ADR --> core
     TASK --> core
-    Spec --> Builder
-    Spec --> Tests
-    Templates --> Builder
-    Knowledge --> Spec
-    Examples --> Spec
+    APS --> Builder
+    APS --> Tests
+    Templates --> APS
+    Make --> APS
+    Knowledge --> APS
+    Examples --> APS
     Builder --> consumers
     Tests --> CI
 ```
@@ -61,26 +63,28 @@ flowchart TB
 ├── ADR/              Architecture Decision Records
 ├── RFC/              Specification change proposals
 ├── TASK/             Tracked work items
+├── aps/              APS DSL source tree
 ├── builder/          SDK build and code generation tooling
 ├── docs/             Supplementary documentation
 ├── examples/         Reference usage examples
 ├── knowledge/        Domain knowledge and reference material
-├── specification/    Normative APS specification artifacts
+├── make/             Build scenarios and automation prompts
 ├── templates/        Authoring scaffolds
-└── tests/            Conformance and regression tests
+└── tests/            SDK conformance and regression tests
 ```
 
 ## Components
 
 | Component | Purpose |
 |-----------|---------|
-| [`specification/`](specification/) | Normative APS specification — grammar, schema, semantics, versioning |
+| [`aps/`](aps/) | APS DSL source tree — schema, rules, checks, validators, actions |
 | [`builder/`](builder/) | Validates specification inputs and generates distributable SDK artifacts |
-| [`tests/`](tests/) | Conformance and regression tests against the normative specification |
+| [`tests/`](tests/) | SDK conformance and regression tests against the APS language |
 | [`templates/`](templates/) | Canonical scaffolds for authoring specification-compliant documents |
 | [`knowledge/`](knowledge/) | Non-normative reference: glossaries, guides, domain mappings |
 | [`examples/`](examples/) | Illustrative examples of specification artifacts and SDK usage |
 | [`docs/`](docs/) | Supplementary documentation for adopters and maintainers |
+| [`make/`](make/) | Build scenarios and prompts for DSL authoring workflows |
 | [`ADR/`](ADR/) | Architecture Decision Records for irreversible design choices |
 | [`RFC/`](RFC/) | Specification change proposals reviewed before merge |
 | [`TASK/`](TASK/) | Scoped work items with acceptance criteria |
@@ -90,7 +94,7 @@ flowchart TB
 | Step | Action |
 |------|--------|
 | 1 | Create a branch from `develop` using the naming convention in [CONTRIBUTING.md](CONTRIBUTING.md) |
-| 2 | For specification changes, submit an RFC in `RFC/` before modifying `specification/` |
+| 2 | For specification changes, submit an RFC in `RFC/` before modifying `aps/` |
 | 3 | For architectural decisions, record an ADR in `ADR/` |
 | 4 | Track implementation work with a TASK document in `TASK/` |
 | 5 | Open a pull request against `develop` and address review feedback |

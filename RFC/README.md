@@ -6,7 +6,7 @@ Request for Comments provides a structured review process for proposed changes t
 
 ## Responsibility
 
-Ensure specification modifications are reviewed, debated, and approved before they are implemented in `specification/`.
+Ensure specification modifications are reviewed, debated, and approved before they are implemented in `aps/`.
 
 ## Expected Contents
 
@@ -18,7 +18,7 @@ Ensure specification modifications are reviewed, debated, and approved before th
 
 | Directory | Relationship |
 |-----------|--------------|
-| [`specification/`](../specification/) | Accepted RFCs are implemented here as normative artifacts |
+| [`aps/`](../aps/) | Accepted RFCs are implemented here as normative artifacts |
 | [`ADR/`](../ADR/) | Architectural decisions may precede or result from RFC discussions |
 | [`TASK/`](../TASK/) | Tasks track RFC implementation work after acceptance |
 | [`tests/`](../tests/) | Conformance tests validate RFC outcomes once implemented |

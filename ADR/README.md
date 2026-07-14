@@ -20,7 +20,7 @@ Capture the context, decision, and consequences of significant design choices so
 |-----------|--------------|
 | [`RFC/`](../RFC/) | RFCs propose specification changes; ADRs record architectural decisions that may enable or constrain them |
 | [`TASK/`](../TASK/) | Tasks reference ADRs when implementation depends on a recorded decision |
-| [`specification/`](../specification/) | ADRs may mandate structural constraints on specification artifacts |
+| [`aps/`](../aps/) | ADRs may mandate structural constraints on APS DSL artifacts |
 | [`ARCHITECTURE.md`](../ARCHITECTURE.md) | Root architecture document; ADRs provide the decision history behind it |
 
 Submission process: [CONTRIBUTING.md](../CONTRIBUTING.md).
