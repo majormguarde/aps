@@ -31,3 +31,10 @@ out/
 *.pyc
 __pycache__/
 node_modules/
+.coverage
+htmlcov/
+.pytest_cache/
+coverage.xml
+
+# SDK builder output
+builder/output/
