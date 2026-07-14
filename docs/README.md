@@ -1,32 +1,29 @@
 # Documentation
 
-This directory contains supplementary documentation for **APS SDK**.
-
 ## Purpose
 
-While root-level documents (`README.md`, `ARCHITECTURE.md`, etc.) provide the primary entry points, this directory holds detailed guides that support adoption and maintenance.
+Supplementary documentation that supports APS SDK adoption and long-term maintenance.
 
-## Root Documentation
+## Responsibility
 
-| Document | Location |
-|----------|----------|
-| Project overview | [README.md](../README.md) |
-| Architecture | [ARCHITECTURE.md](../ARCHITECTURE.md) |
-| Roadmap | [ROADMAP.md](../ROADMAP.md) |
-| Contributing | [CONTRIBUTING.md](../CONTRIBUTING.md) |
-| Changelog | [CHANGELOG.md](../CHANGELOG.md) |
+Host detailed guides and references that extend but do not replace root-level project documentation.
 
-## Planned Contents
+## Expected Contents
 
-| Guide | Description |
-|-------|-------------|
-| Specification authoring | How to write APS-compliant specification documents |
-| Builder usage | CLI and API reference for the builder tooling |
+| Artifact | Description |
+|----------|-------------|
+| Authoring guides | How to write APS-compliant specification documents |
+| Builder usage | CLI and API reference for builder tooling |
 | Testing guide | Running and writing conformance tests |
 | Migration guide | Upgrading between specification versions |
 
-## Conventions
+## Relationships
 
-- Use proper Markdown headings.
-- Link to related ADRs, RFCs, and specification sections using relative paths.
-- Keep normative language in `specification/`; guides here are informative.
+| Directory | Relationship |
+|-----------|--------------|
+| Root docs | [README.md](../README.md), [ARCHITECTURE.md](../ARCHITECTURE.md), [ROADMAP.md](../ROADMAP.md) provide primary entry points |
+| [`specification/`](../specification/) | Normative content stays in specification; guides here are informative |
+| [`knowledge/`](../knowledge/) | Domain reference material; docs/ covers SDK usage and process |
+| [`ADR/`](../ADR/), [`RFC/`](../RFC/) | Governance documents; docs/ covers operational guides |
+
+Guides will be authored as corresponding roadmap phases begin.

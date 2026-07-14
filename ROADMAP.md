@@ -6,15 +6,19 @@ Status labels: **Planned** · **In Progress** · **Completed**
 
 ## Phase 0 — Project Foundation
 
-**Status:** In Progress
+**Status:** Completed
 
 Establish repository structure, governance processes, and architectural baseline.
 
 | Deliverable | Status |
 |-------------|--------|
-| Repository structure and root documentation | In Progress |
-| ADR, RFC, TASK governance workflows | Planned |
-| Contribution guidelines | Planned |
+| Top-level directory structure (ADR, RFC, TASK, builder, docs, examples, knowledge, specification, templates, tests) | Completed |
+| Directory README files with purpose, responsibility, contents, and relationships | Completed |
+| Root documentation (README, ARCHITECTURE, ROADMAP, CONTRIBUTING, CHANGELOG) | Completed |
+| Governance workflow documentation (ADR, RFC, TASK) | Completed |
+| Foundation constraints enforced (no specification files, no implementation) | Completed |
+
+Tracked in [TASK-0002](TASK/0002-complete-aps-sdk-foundation.md).
 
 ## Phase 1 — Specification Core
 
@@ -66,6 +70,7 @@ Provide authoring scaffolds and reference material for adopters.
 | Authoring templates | Planned |
 | Glossary and terminology | Planned |
 | Integration guides | Planned |
+| Reference examples | Planned |
 
 ## Phase 5 — First Public Release
 
@@ -85,7 +90,9 @@ Publish APS SDK v1.0.0 with stable specification, builder, tests, and documentat
 The following are explicitly excluded from the APS SDK repository:
 
 - Domain-specific business logic
+- DSL runtime
+- Rule engine
+- Prompt content libraries
 - Runtime prompt execution engines
-- Pre-built prompt content libraries
 
 These belong in downstream consumer projects that depend on APS SDK.

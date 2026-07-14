@@ -1,5 +1,29 @@
 # Builder
 
-SDK build and code generation tooling.
+## Purpose
 
-The builder validates specification inputs and produces distributable artifacts for downstream consumers. Implementation begins in Phase 2 of the [ROADMAP](../ROADMAP.md).
+The builder is the SDK tooling layer that validates specification inputs and generates distributable artifacts.
+
+## Responsibility
+
+Provide the build pipeline, validation engine, CLI, and programmatic API for consuming APS specification artifacts.
+
+## Expected Contents
+
+| Artifact | Description |
+|----------|-------------|
+| Build pipeline | Source that parses, validates, and generates SDK outputs |
+| CLI | Command-line interface for local and CI usage |
+| API | Programmatic interface for IDE and pipeline integrations |
+| Configuration | Builder-specific settings (not normative specification files) |
+
+## Relationships
+
+| Directory | Relationship |
+|-----------|--------------|
+| [`specification/`](../specification/) | Primary input — builder consumes normative specification artifacts |
+| [`templates/`](../templates/) | Authoring scaffolds that feed into the build pipeline |
+| [`tests/`](../tests/) | Conformance tests verify builder output against the specification |
+| [`examples/`](../examples/) | Illustrative inputs for builder validation during development |
+
+Implementation begins in Phase 2 of [ROADMAP.md](../ROADMAP.md). No builder code exists at the foundation stage.

@@ -10,105 +10,119 @@ This document describes the architectural model of **APS SDK** (Avangard Prompt 
 4. **Testable conformance** — Every normative requirement must be verifiable through automated tests in `tests/`.
 5. **Industrial readiness** — The SDK is designed for long-term maintenance, versioning, and multi-team collaboration.
 
+## Repository Layout
+
+```
+.
+├── ADR/              Architecture Decision Records
+├── RFC/              Specification change proposals
+├── TASK/             Tracked work items
+├── builder/          SDK build and code generation tooling
+├── docs/             Supplementary documentation
+├── examples/         Reference usage examples
+├── knowledge/        Domain knowledge and reference material
+├── specification/    Normative APS specification artifacts
+├── templates/        Authoring scaffolds
+└── tests/            Conformance and regression tests
+```
+
+Root-level documents (`README.md`, `ARCHITECTURE.md`, `ROADMAP.md`, `CONTRIBUTING.md`, `CHANGELOG.md`) provide project-wide context. Each directory contains a `README.md` describing its purpose, responsibility, expected contents, and relationships.
+
 ## System Context
 
 ```mermaid
 flowchart TB
+    subgraph governance [Governance]
+        ADR[ADR/]
+        RFC[RFC/]
+        TASK[TASK/]
+    end
+
+    subgraph core [Core]
+        Spec[specification/]
+        Builder[builder/]
+        Tests[tests/]
+    end
+
+    subgraph support [Support]
+        Templates[templates/]
+        Knowledge[knowledge/]
+        Examples[examples/]
+        Docs[docs/]
+    end
+
     subgraph consumers [Consumers]
         IDE[IDE Integrations]
         CI[CI/CD Pipelines]
         Apps[Application Runtimes]
     end
 
-    subgraph sdk [APS SDK]
-        Spec[specification/]
-        Builder[builder/]
-        Templates[templates/]
-        Knowledge[knowledge/]
-        Examples[examples/]
-        Tests[tests/]
-    end
-
-    subgraph governance [Governance]
-        RFC[RFC/]
-        ADR[ADR/]
-        Task[TASK/]
-    end
-
+    RFC --> Spec
+    ADR --> core
+    TASK --> core
     Spec --> Builder
     Spec --> Tests
     Templates --> Builder
     Knowledge --> Spec
     Examples --> Spec
-    RFC --> Spec
-    ADR --> sdk
-    Task --> sdk
     Builder --> consumers
     Tests --> CI
 ```
 
 ## Component Boundaries
 
-### `specification/`
+### Governance
 
-Normative artifacts that define the APS language, schema, semantics, and versioning rules. This layer contains no executable code.
+| Directory | Responsibility | Expected Contents |
+|-----------|---------------|-------------------|
+| `ADR/` | Record irreversible architectural decisions | Numbered ADR documents |
+| `RFC/` | Propose and review specification changes | Numbered RFC documents |
+| `TASK/` | Track implementation work with acceptance criteria | Numbered task documents |
 
-**Responsibilities:**
+### Core
 
-- Define the formal grammar and data model
-- Document semantic rules and constraints
-- Maintain version compatibility matrix
+| Directory | Responsibility | Expected Contents |
+|-----------|---------------|-------------------|
+| `specification/` | Define normative APS language, schema, semantics, versioning | Specification artifacts (Phase 1) |
+| `builder/` | Validate inputs and generate distributable SDK artifacts | Build pipeline, CLI, API (Phase 2) |
+| `tests/` | Verify conformance against the normative specification | Schema, semantic, builder, regression tests (Phase 3) |
 
-**Must not contain:** Builder logic, runtime implementations, or domain-specific business rules.
+### Support
 
-### `builder/`
+| Directory | Responsibility | Expected Contents |
+|-----------|---------------|-------------------|
+| `templates/` | Provide authoring scaffolds for specification and governance documents | Structural templates (Phase 4) |
+| `knowledge/` | Host non-normative reference material | Glossaries, domain mappings, guides (Phase 4) |
+| `examples/` | Illustrate correct usage without defining requirements | Sample artifacts and patterns (Phase 4) |
+| `docs/` | Supplement root documentation with detailed guides | Authoring, builder, testing, migration guides |
 
-Tooling that consumes the specification and produces validated artifacts (schemas, parsers, generators).
+## Dependency Flow
 
-**Responsibilities:**
+```
+RFC/ ──proposes──▶ specification/ ──consumed by──▶ builder/
+                         │                              │
+                         ├──validated by──▶ tests/       ├──output──▶ consumers
+                         │
+templates/ ──scaffolds──▶ specification/
+knowledge/ ──informs──▶  specification/
+examples/ ──illustrates ▶ specification/
 
-- Parse and validate specification inputs
-- Generate distributable SDK packages
-- Provide CLI and programmatic APIs
+ADR/ ──governs──▶ all layers
+TASK/ ──tracks──▶ all layers
+```
 
-**Must not contain:** Normative specification text or conformance test definitions.
+## Foundation Stage Constraints
 
-### `templates/`
+At the current foundation stage, the repository contains **infrastructure only**:
 
-Canonical scaffolds for authoring specification-compliant documents. Templates are structural; they do not embed domain logic.
-
-### `knowledge/`
-
-Non-normative reference material: glossaries, integration guides, domain mappings. Content here does not override the specification.
-
-### `examples/`
-
-Illustrative, non-normative examples of specification artifacts and SDK usage patterns. Examples support adoption but do not define requirements.
-
-### `tests/`
-
-Conformance suite that validates specification compliance across builder outputs and reference implementations.
-
-**Test categories:**
-
-| Category | Purpose |
-|----------|---------|
-| Schema validation | Structural correctness of specification artifacts |
-| Semantic validation | Behavioral correctness against normative rules |
-| Builder integration | End-to-end build pipeline verification |
-| Regression | Protection against unintended breaking changes |
-
-### `docs/`
-
-Supplementary documentation that supports adoption but is not part of the normative specification.
-
-## Governance Layers
-
-| Layer | Location | Purpose |
-|-------|----------|---------|
-| RFC | `RFC/` | Propose and review specification changes |
-| ADR | `ADR/` | Record irreversible architectural decisions |
-| TASK | `TASK/` | Track implementation work with acceptance criteria |
+| Excluded | Reason |
+|----------|--------|
+| APS YAML specification files | Specification content begins in Phase 1 |
+| Builder implementation | Tooling begins in Phase 2 |
+| Conformance tests | Test suite begins in Phase 3 |
+| DSL runtime | Out of SDK scope |
+| Rule engine | Out of SDK scope |
+| Prompt content | Out of SDK scope |
 
 ## Versioning Strategy
 

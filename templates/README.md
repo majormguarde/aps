@@ -1,35 +1,28 @@
 # Templates
 
-This directory contains canonical templates for authoring **APS SDK** specification artifacts.
-
 ## Purpose
 
-Templates provide structural scaffolds that ensure consistency across specification documents, RFCs, ADRs, and knowledge base entries.
+Canonical scaffolds for authoring APS SDK specification artifacts and governance documents.
 
-## Content Types
+## Responsibility
 
-| Template | Purpose |
-|----------|---------|
-| Specification sections | Standard structure for normative specification documents |
-| Schema definitions | Canonical format for schema artifacts |
-| Authoring scaffolds | Starter structures for new specification modules |
+Ensure structural consistency across specification documents, RFCs, ADRs, and knowledge base entries without embedding domain logic.
 
-## Boundaries
+## Expected Contents
 
-| Property | Rule |
-|----------|------|
-| Content | Structural only — no domain logic or sample data |
-| Authority | Templates inform authoring; `specification/` remains normative |
-| Maintenance | Template changes follow the RFC process when they affect normative structure |
+| Artifact | Description |
+|----------|-------------|
+| Specification scaffolds | Standard structure for normative specification sections |
+| Governance scaffolds | Templates for RFC, ADR, and TASK documents |
+| Schema scaffolds | Canonical format for schema artifact authoring |
 
-## Relationship to Other Directories
+## Relationships
 
-```
-templates/       →  authoring scaffolds
-specification/   →  normative output
-builder/         →  consumes specification
-```
+| Directory | Relationship |
+|-----------|--------------|
+| [`specification/`](../specification/) | Templates produce content that lands in the normative layer |
+| [`builder/`](../builder/) | Builder may consume template-generated artifacts |
+| [`RFC/`](../RFC/), [`ADR/`](../ADR/), [`TASK/`](../TASK/) | Governance templates standardize proposal and decision documents |
+| [`examples/`](../examples/) | Examples demonstrate template usage |
 
-## Development
-
-Templates will be created in Phase 4 of the [ROADMAP](../ROADMAP.md).
+Templates will be created in Phase 4 of [ROADMAP.md](../ROADMAP.md).

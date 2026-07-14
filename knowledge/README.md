@@ -1,36 +1,28 @@
-# Knowledge Base
-
-This directory contains non-normative reference material for **APS SDK**.
+# Knowledge
 
 ## Purpose
 
-The knowledge base supports specification authors and SDK integrators with contextual information that does not belong in the normative specification.
+Non-normative reference material that supports specification authors and SDK integrators.
 
-## Content Types
+## Responsibility
 
-| Type | Description |
-|------|-------------|
+Provide contextual information — glossaries, domain mappings, integration patterns — that does not belong in the normative specification.
+
+## Expected Contents
+
+| Artifact | Description |
+|----------|-------------|
 | Glossary | Terminology definitions and usage conventions |
 | Domain mappings | How APS constructs map to specific problem domains |
 | Integration guides | Patterns for consuming SDK outputs in applications |
-| Examples | Worked illustrations of specification-compliant artifacts |
 
-## Boundaries
+## Relationships
 
-| Property | Rule |
-|----------|------|
-| Normative authority | Content here does **not** override `specification/` |
-| Versioning | Knowledge base updates do not trigger specification version bumps |
-| Scope | No domain-specific business logic |
+| Directory | Relationship |
+|-----------|--------------|
+| [`specification/`](../specification/) | Normative authority — knowledge content does not override specification rules |
+| [`examples/`](../examples/) | Concrete illustrations complement conceptual knowledge |
+| [`templates/`](../templates/) | Scaffolds for authoring knowledge base entries |
+| [`docs/`](../docs/) | SDK process guides; knowledge/ covers domain reference material |
 
-## Relationship to Other Directories
-
-```
-specification/  ←  normative (authoritative)
-knowledge/      ←  informative (supporting)
-templates/      ←  structural (authoring scaffolds)
-```
-
-## Development
-
-Knowledge base content will be populated in Phase 4 of the [ROADMAP](../ROADMAP.md).
+Knowledge base content will be populated in Phase 4 of [ROADMAP.md](../ROADMAP.md).
